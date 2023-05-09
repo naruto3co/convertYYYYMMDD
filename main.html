@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi định dạng ngày</title>
+  </head>
+  <body>
+    <h1>Chuyển đổi định dạng ngày</h1>
+    <textarea id="input" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="convertDates()">Chuyển đổi</button>
+    <br><br>
+    <textarea id="output" rows="10" cols="50"></textarea>
+
+    <script>
+      function convertDates() {
+        // Lấy giá trị đầu vào từ ô textarea
+        var inputText = document.getElementById("input").value;
+
+        // Tách các dòng dữ liệu thành mảng các chuỗi
+        var inputLines = inputText.split("\n");
+
+        // Chuyển đổi định dạng ngày cho từng chuỗi trong mảng
+        var outputLines = inputLines.map(function(line) {
+          // Tách các phần tử ngày, tháng, năm từ chuỗi đầu vào
+          var year = line.substr(0, 4);
+          var month = line.substr(4, 2);
+          var day = line.substr(6, 2);
+
+          // Ghép lại các phần tử ngày, tháng, năm thành chuỗi mới với định dạng "YYYY/MM/DD"
+          var newDate = year + "/" + month + "/" + day;
+
+          // Trả về chuỗi mới
+          return newDate;
+        });
+
+        // Ghép các chuỗi mới thành một chuỗi đơn và hiển thị kết quả trên ô textarea đầu ra
+        var outputText = outputLines.join("\n");
+        document.getElementById("output").value = outputText;
+      }
+    </script>
+  </body>
+</html>
